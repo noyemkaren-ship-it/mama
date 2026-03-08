@@ -44,3 +44,16 @@ async def otkritka(request: Request):
             "otkritka": cards
         }
     )
+
+
+@app.post("/create")
+async def create_otkritki(title: str, text: str, emoji: str):
+    otkritki_data.append({
+        "title": title,
+        "emoji": emoji,
+        "text": text,
+    })
+
+@app.get("/create/otkritki")
+async def create_otkritki(request: Request):
+    return templates.TemplateResponse("create.html", {"request": request})

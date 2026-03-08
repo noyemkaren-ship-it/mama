@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создать открытку</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ffd6e7, #ffeef5, #ffd1dc);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 520px;
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 24px;
+            padding: 28px;
+            box-shadow: 0 14px 40px rgba(214, 51, 132, 0.18);
+        }
+
+        h1 {
+            margin: 0 0 10px;
+            text-align: center;
+            color: #d63384;
+            font-size: 32px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #7a3b5c;
+            margin-bottom: 24px;
+            font-size: 17px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #8a295d;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #f3bfd7;
+            border-radius: 14px;
+            font-size: 16px;
+            outline: none;
+            transition: 0.2s ease;
+            background: #fff;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #d63384;
+            box-shadow: 0 0 0 4px rgba(214, 51, 132, 0.1);
+        }
+
+        textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        button {
+            margin-top: 6px;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 14px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            color: white;
+            background: linear-gradient(135deg, #ff4fa3, #d63384);
+            box-shadow: 0 8px 20px rgba(214, 51, 132, 0.25);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(214, 51, 132, 0.3);
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 18px;
+            text-align: center;
+            width: 100%;
+            color: #c2185b;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                padding: 22px 16px;
+                border-radius: 18px;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+
+            .subtitle {
+                font-size: 15px;
+            }
+
+            input, textarea {
+                font-size: 15px;
+                padding: 12px 14px;
+            }
+
+            button {
+                font-size: 17px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Создать открытку 💌</h1>
+        <div class="subtitle">Заполни поля и добавь новую открытку</div>
+
+        <form action="/create" method="post">
+            <div>
+                <label for="title">Заголовок</label>
+                <input type="text" id="title" name="title" placeholder="Например: С 8 Марта, мама!" required>
+            </div>
+
+            <div>
+                <label for="emoji">Эмодзи</label>
+                <input type="text" id="emoji" name="emoji" placeholder="Например: 🌷💖🌸" required>
+            </div>
+
+            <div>
+                <label for="text">Текст открытки</label>
+                <textarea id="text" name="text" placeholder="Напиши поздравление для мамы..." required></textarea>
+            </div>
+
+            <button type="submit">Создать открытку</button>
+        </form>
+
+        <a class="back" href="/otkritka">Посмотреть открытки</a>
+    </div>
+</body>
+</html>
