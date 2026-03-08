@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Поздравление с 8 марта</title>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: "Arial", sans-serif;
+        background: linear-gradient(135deg, #ffd6e7, #ffeef5, #ffd1dc);
+        overflow: hidden;
+        position: relative;
+    }
+    .link{
+    display:inline-block;
+    margin-top:20px;
+    padding:10px 20px;
+    background:#d63384;
+    color:white;
+    text-decoration:none;
+    border-radius:10px;
+    font-size:18px;}
+    .hearts {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+        z-index: 0;
+    }
+
+    .heart {
+        position: absolute;
+        bottom: -20px;
+        color: rgba(255, 105, 180, 0.4);
+        font-size: 20px;
+        animation: floatUp linear infinite;
+    }
+
+    @keyframes floatUp {
+        0% {
+            transform: translateY(0) scale(1);
+            opacity: 0;
+        }
+        10% {
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-110vh) scale(1.5);
+            opacity: 0;
+        }
+    }
+
+    .card {
+        position: relative;
+        z-index: 2;
+        width: 90%;
+        max-width: 520px;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        border-radius: 28px;
+        padding: 40px 30px;
+        text-align: center;
+        box-shadow: 0 15px 40px rgba(214, 51, 132, 0.2);
+        border: 2px solid rgba(255, 255, 255, 0.6);
+        animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    h1 {
+        margin: 0 0 15px;
+        font-size: 34px;
+        color: #d63384;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.08);
+    }
+
+    h2 {
+        margin: 0 0 30px;
+        font-size: 26px;
+        color: #8a295d;
+        font-weight: 600;
+    }
+
+    .flowers {
+        font-size: 32px;
+        margin-bottom: 18px;
+    }
+
+    .buttons {
+        position: relative;
+        width: 100%;
+        height: 120px;
+    }
+
+    button {
+        padding: 14px 30px;
+        font-size: 20px;
+        font-weight: bold;
+        border: none;
+        border-radius: 14px;
+        cursor: pointer;
+        transition: 0.25s ease;
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+    }
+
+    #yes {
+        background: linear-gradient(135deg, #ff4fa3, #ff85b3);
+        color: white;
+    }
+
+    #yes:hover {
+        transform: scale(1.08);
+        box-shadow: 0 10px 22px rgba(255, 79, 163, 0.35);
+    }
+
+    #no {
+        background: linear-gradient(135deg, #8e8e8e, #b5b5b5);
+        color: white;
+        position: absolute;
+        left: 58%;
+        top: 0;
+    }
+
+    #result {
+        margin-top: 20px;
+        font-size: 24px;
+        color: #c2185b;
+        font-weight: bold;
+        min-height: 35px;
+        animation: pulse 1s infinite alternate;
+    }
+
+    @keyframes pulse {
+        from {
+            transform: scale(1);
+        }
+        to {
+            transform: scale(1.03);
+        }
+    }
+
+    .yes-wrap {
+        position: absolute;
+        left: 22%;
+        top: 0;
+    }
+
+    @media (max-width: 600px) {
+        h1 {
+            font-size: 28px;
+        }
+
+        h2 {
+            font-size: 22px;
+        }
+
+        button {
+            font-size: 18px;
+            padding: 12px 24px;
+        }
+
+        .yes-wrap {
+            left: 10%;
+        }
+
+        #no {
+            left: 55%;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="hearts">
+    <span class="heart" style="left: 10%; animation-duration: 7s; font-size: 22px;">❤</span>
+    <span class="heart" style="left: 20%; animation-duration: 9s; font-size: 18px;">❤</span>
+    <span class="heart" style="left: 35%; animation-duration: 6s; font-size: 26px;">❤</span>
+    <span class="heart" style="left: 50%; animation-duration: 8s; font-size: 20px;">❤</span>
+    <span class="heart" style="left: 65%; animation-duration: 7s; font-size: 24px;">❤</span>
+    <span class="heart" style="left: 80%; animation-duration: 10s; font-size: 19px;">❤</span>
+    <span class="heart" style="left: 90%; animation-duration: 6.5s; font-size: 23px;">❤</span>
+</div>
+
+<div class="card">
+    <div class="flowers">🌷 💖 🌸</div>
+    <h1>Мама, поздравляю с 8 Марта!</h1>
+    <h2>Ты меня любишь?</h2>
+
+    <div class="buttons">
+        <div class="yes-wrap">
+            <button id="yes" onclick="love()">Да</button>
+        </div>
+        <button id="no" onmouseover="moveButton()">Нет</button>
+
+    </div>
+
+
+    <p id="result"></p>
+
+    <a class="link" href="/otkritka">Открыть открытку 💌</a>
+</div>
+
+<script>
+function love() {
+    document.getElementById("result").innerHTML = "Я тоже тебя очень люблю ❤️";
+}
+
+function moveButton() {
+    const btn = document.getElementById("no");
+    const card = document.querySelector(".buttons");
+
+    const maxX = card.clientWidth - btn.offsetWidth;
+    const maxY = card.clientHeight - btn.offsetHeight;
+
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+
+    btn.style.left = x + "px";
+    btn.style.top = y + "px";
+}
+</script>
+
+</body>
+</html>
