@@ -1,12 +1,12 @@
 from fastapi import FastAPI, Request
-from starlette.templating import Jinja2Templates
+from fastapi.templating import Jinja2Templates
+from fastapi.responses import HTMLResponse
 import random
-
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 
-otkritka = [
+otkritki_data = [
     {
         "title": "С 8 Марта, мама!",
         "text": "Дорогая мама! Поздравляю тебя с 8 Марта. Спасибо за твою заботу, доброту и любовь. Ты самая лучшая мама!",
@@ -29,22 +29,18 @@ otkritka = [
     }
 ]
 
-@app.get("/")
-async def root(request: Request):
+@app.get("/", response_class=HTMLResponse)
+async def index(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
-@app.get("/otkritka")
+@app.get("/otkritka", response_class=HTMLResponse)
 async def otkritka(request: Request):
-    random.shuffle(otkritka)
-    return templates.TemplateResponse("otkritka.html", {
-        "request": request,
-        "otkr": otkritka
-                                                        })
-
-
-@app.get("/create/otkritka")
-async def create(title: str, emoji: str, text: str):
-    otkritka.append({"title": title, "text": text, "emoji": emoji})
-    if (title==None) or (text==None) or (emoji==None):
-        return {"message": "Ошибка"}
-    return {"Открытка добавлена"}
+    cards = otkritki_data.copy()
+    random.shuffle(cards)
+    return templates.TemplateResponse(
+        "otkritka.html",
+        {
+            "request": request,
+            "otkritka": cards
+        }
+    )
