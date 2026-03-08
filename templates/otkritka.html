@@ -2,120 +2,57 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<title>Открытка для мамы</title>
+<title>Открытки для мамы</title>
 
 <style>
 body{
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#ffd6e7,#ffeef5);
     margin:0;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-family:Arial, sans-serif;
-    background:linear-gradient(135deg,#ffc6e0,#ffe6f2);
-    overflow:hidden;
+    padding:30px;
 }
 
 .card{
     background:white;
-    padding:40px;
-    border-radius:25px;
-    text-align:center;
-    box-shadow:0 15px 40px rgba(0,0,0,0.2);
-    animation:appear 1s ease;
+    padding:20px;
+    border-radius:15px;
+    margin-bottom:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
 }
 
-@keyframes appear{
-    from{transform:scale(0.7);opacity:0;}
-    to{transform:scale(1);opacity:1;}
-}
-
-h1{
+h2{
     color:#d63384;
-    font-size:38px;
 }
 
-p{
-    font-size:20px;
-    color:#444;
-}
-
-.flowers{
-    font-size:40px;
-    margin-bottom:10px;
-}
-
-button{
-    margin-top:20px;
-    padding:12px 25px;
-    font-size:18px;
-    border:none;
-    border-radius:10px;
-    background:#ff4fa3;
-    color:white;
-    cursor:pointer;
-    transition:0.3s;
-}
-
-button:hover{
-    transform:scale(1.1);
-}
-
-.heart{
-    position:absolute;
-    color:#ff4fa3;
-    animation:float 6s linear infinite;
-}
-
-@keyframes float{
-    from{transform:translateY(100vh);}
-    to{transform:translateY(-10vh);}
+.emoji{
+    font-size:28px;
 }
 </style>
-</head>
 
+</head>
 <body>
 
-<div class="card">
-<div class="flowers">🌷💐🌸</div>
+<h1>Открытки для мамы 💖</h1>
 
-<h1>С 8 Марта, мама!</h1>
+{% for i in otkritka %}
+
+<div class="card">
+
+<div class="emoji">
+{{ i.emoji }}
+</div>
+
+<h2>
+{{ i.title }}
+</h2>
 
 <p>
-Дорогая мама!<br><br>
-Спасибо тебе за заботу, любовь и поддержку.
-Ты самая лучшая мама в мире! ❤️
+{{ i.text }}
 </p>
-
-<p>Я тебя очень люблю!</p>
-
-<button onclick="showLove()">Нажми ❤️</button>
-
-<p id="msg"></p>
 
 </div>
 
-<script>
-
-function showLove(){
-    document.getElementById("msg").innerHTML="С праздником! 💖";
-}
-
-function createHeart(){
-    const heart=document.createElement("div");
-    heart.className="heart";
-    heart.innerHTML="❤";
-    heart.style.left=Math.random()*100+"vw";
-    heart.style.fontSize=(20+Math.random()*30)+"px";
-    heart.style.animationDuration=(4+Math.random()*4)+"s";
-    document.body.appendChild(heart);
-
-    setTimeout(()=>heart.remove(),6000);
-}
-
-setInterval(createHeart,500);
-
-</script>
+{% endfor %}
 
 </body>
 </html>
