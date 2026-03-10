@@ -45,7 +45,6 @@ async def otkritka(request: Request):
         }
     )
 
-
 @app.post("/create")
 async def create_otkritki(title: str, text: str, emoji: str):
     otkritki_data.append({
